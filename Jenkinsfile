@@ -1,8 +1,7 @@
-Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
     stages {
-        stage('Example') {
+        stage('stage1') {
             steps {
                 echo "Running"
             }
