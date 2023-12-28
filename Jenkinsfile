@@ -6,5 +6,10 @@ pipeline {
                 echo "Running test"
             }
         }
+        stage('stage2') {
+            steps {
+                echo "Running stage 2"
+            }
+        }
     }
 }
