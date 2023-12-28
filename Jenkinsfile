@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                echo "Running good"
+                echo "Running"
             }
         }
     }
