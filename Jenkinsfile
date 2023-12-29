@@ -21,7 +21,7 @@ pipeline {
                 // echo "${env.SF_CONSUMER_KEY}"
             }
         }
-        stage('stage 2') {
+        stage('stage no 2') {
             steps {
                 echo "Running stage 2"
                 withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
