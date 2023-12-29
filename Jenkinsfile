@@ -8,6 +8,9 @@ pipeline {
         
     }
     stages {
+        stage('checkout source') {
+            checkout scm
+        }
         stage('stage1') {
             steps {
                 echo "Running stage 1"
