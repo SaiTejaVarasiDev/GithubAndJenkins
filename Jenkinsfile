@@ -34,7 +34,7 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     echo "Testing sfdx installation"
-                    bat 'pwd'
+                    bat 'dir'
                 }
             }
         }
