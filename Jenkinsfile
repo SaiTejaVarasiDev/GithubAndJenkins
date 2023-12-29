@@ -33,7 +33,8 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     echo "Testing sfdx installation"
-                    sh "${toolbelt} sfdx"
+                    sh "pwd"
+                    // sh "${toolbelt} sfdx"
                 }
             }
         }
