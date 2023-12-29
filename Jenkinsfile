@@ -34,7 +34,6 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     echo "Testing sfdx installation"
-                    bat "cd C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\tools\com.cloudbees.jenkins.plugins.customtools.CustomTool\salesforce\sf\bin"
                     bat "dir"
                     bat "sf --version"
                     
