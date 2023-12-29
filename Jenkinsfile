@@ -29,6 +29,14 @@ pipeline {
                 }
             }
         }
+        stage('stage3') {
+            steps {
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    echo "Testing sfdx installation"
+                    sh "${toolbelt}/sfdx"
+                }
+            }
+        }
     }
 }
 
