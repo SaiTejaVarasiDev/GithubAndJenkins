@@ -8,6 +8,10 @@ pipeline {
         def toolbelt = tool 'salesforce'
         
         
+        
+    }
+    parameters {
+        string(name: 'apexclass_path', defaultValue: 'C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline/force-app/main/default/classes', description: 'path')
     }
     stages {
         stage('Testing credentials') {
@@ -41,7 +45,7 @@ pipeline {
                             bat "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${secret_file_key} --set-default-dev-hub --alias HubOrg"
                             // bat "sfdx --version"
                             // bat "sfdx force:source:deploy --metadata "ApexClass,CustomObject" --testlevel RunSpecifiedTests --runtests MyTests --targetusername my-scratch"
-                            bat "sf project deploy start --metadata ApexClass --metadata CustomObject --test-level RunSpecifiedTests --tests MyTests --target-org HubOrg"
+                            bat "sf project deploy start --metadata ${params.apexclass_path} --metadata CustomObject --test-level RunSpecifiedTests --tests MyTests --target-org HubOrg"
                         }
                     }
                 }
