@@ -30,7 +30,7 @@ pipeline {
                 }
             }
         }
-        stage('Authorize To ORG and deploy') {
+        stage('Authorize To ORG and deploy testing') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     echo "Testing sfdx installation"
