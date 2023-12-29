@@ -9,7 +9,7 @@ pipeline {
         
     }
     stages {
-        stage('stage1') {
+        stage('stage 1') {
             steps {
                 echo "Running stage 1"
                 echo "$SF_INSTANCE_URL"
