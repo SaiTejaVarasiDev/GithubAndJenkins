@@ -36,7 +36,7 @@ pipeline {
                 }
             }
         }
-        stage('stage3') {
+        stage('stage 3') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     echo "Testing sfdx installation"
