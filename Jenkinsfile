@@ -52,7 +52,7 @@ node {
             stage('Authorize DevHub') {
                 rc = command "${toolbelt}/sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg"
                 if (rc != 0) {
-                    error 'Salesforce dev hub org authorization failed.'
+                    error 'Salesforce dev hub org authorizing failed.'
                 }
             }
         }
