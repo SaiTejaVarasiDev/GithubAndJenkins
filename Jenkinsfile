@@ -22,7 +22,7 @@ pipeline {
                 // echo "${env.SF_CONSUMER_KEY}"
             }
         }
-        stage('Checking Server key') {
+        stage('Checking Server key access') {
             steps {
                 echo "Running stage 2"
                 withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
