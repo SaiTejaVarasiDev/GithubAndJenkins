@@ -38,7 +38,7 @@ pipeline {
         stage('Authorize To ORG and deploy testing') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    bat "${toolbelt}/sf/bin sf --version"
+                    bat "${toolbelt}\sf\bin sf --version"
                     // dir('C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce/sf/bin'){
                     //     withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
                     //         // echo "${secret_file_key}"
