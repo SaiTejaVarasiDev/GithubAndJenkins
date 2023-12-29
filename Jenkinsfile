@@ -32,11 +32,9 @@ pipeline {
         stage('stage3'){
             steps {
                 echo "Connecting to org"
-                withEnv(["HOME=${env.WORKSPACE}"]) {
-                    withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'server_key_file')]){
-                        sh "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg"
-                        
-                    }
+                withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'server_key_file')]){
+                    sh "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg"
+                    
                 }
             }
         }
