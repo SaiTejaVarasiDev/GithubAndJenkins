@@ -4,6 +4,7 @@ pipeline {
         SF_INSTANCE_URL = credentials('SF_INSTANCE_URL')
         SF_USERNAME = credentials('SF_USERNAME')
         SF_CONSUMER_KEY = credentials('SF_CONSUMER_KEY')
+        
     }
     stages {
         stage('stage1') {
@@ -21,6 +22,9 @@ pipeline {
         stage('stage2') {
             steps {
                 echo "Running stage 2"
+                withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key'){
+                    echo "$secret_file_key"
+                }
             }
         }
     }
