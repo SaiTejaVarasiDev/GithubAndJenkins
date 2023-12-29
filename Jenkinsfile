@@ -38,7 +38,7 @@ pipeline {
                         withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
                             echo "${secret_file_key}"
                             bat "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${secret_file_key} --set-default-dev-hub --alias HubOrg"
-                            bat "sfdx force:source:deploy -p force-app -c -u ${SF_USERNAME}"
+                            bat "sf project deploy --target-org HubOrg"
                         }
                     }
                 }
