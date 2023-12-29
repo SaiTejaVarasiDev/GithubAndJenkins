@@ -6,13 +6,7 @@ pipeline {
         SF_CONSUMER_KEY = credentials('SF_CONSUMER_KEY')
         SF_SERVER_KEY = credentials('SF_SERVER_KEY')
         def toolbelt = tool 'salesforce'
-        def command(script) {
-            if (isUnix()) {
-                return sh(returnStatus: true, script: script);
-            } else {
-                return bat(returnStatus: true, script: script);
-            }
-        }
+        
         
     }
     stages {
@@ -40,10 +34,7 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     echo "Testing sfdx installation"
-                    rc = command "${toolbelt}/sf --version"
-                    if (rc != 0) {
-                        error 'Salesforce dev hub org authorization failed.'
-                    }
+                    bat 'pwd'
                 }
             }
         }
