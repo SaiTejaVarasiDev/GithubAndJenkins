@@ -49,7 +49,7 @@ node {
     SF_USERNAME = credentials('SF_USERNAME')
     SF_CONSUMER_KEY = credentials('SF_CONSUMER_KEY')
     SF_SERVER_KEY = credentials('SF_SERVER_KEY')
-    def toolbelt = tool 'toolbelt'
+    def toolbelt = tool 'salesforce'
 
 
     stage('checkout source') {
