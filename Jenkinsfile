@@ -23,7 +23,7 @@ pipeline {
         }
         stage('stage2') {
             steps {
-                echo "Running stage 2"
+                echo "Running on stage 2"
                 withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
                     echo "${secret_file_key}"
                 }
