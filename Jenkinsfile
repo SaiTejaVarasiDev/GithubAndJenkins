@@ -21,20 +21,22 @@ pipeline {
                 // echo "${env.SF_CONSUMER_KEY}"
             }
         }
-        stage('stage2') {
-            steps {
-                echo "Running stage 2"
-                withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
-                    echo "${secret_file_key}"
-                }
-            }
-        }
+        // stage('stage2') {
+        //     steps {
+        //         echo "Running stage 2"
+        //         withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
+        //             echo "${secret_file_key}"
+        //         }
+        //     }
+        // }
         stage('stage3'){
             steps {
                 echo "Connecting to org"
-                withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'server_key_file')]){
-                    sh "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg"
-                    
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'server_key_file')]){
+                        sh "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg"
+                        
+                    }
                 }
             }
         }
