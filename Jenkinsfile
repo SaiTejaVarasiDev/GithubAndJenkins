@@ -5,14 +5,10 @@ pipeline {
         SF_USERNAME = credentials('SF_USERNAME')
         SF_CONSUMER_KEY = credentials('SF_CONSUMER_KEY')
         SF_SERVER_KEY = credentials('SF_SERVER_KEY')
+        def toolbelt = tool 'salesforce'
         
     }
     stages {
-        stage('checkout source') {
-            steps{
-                checkout scm
-            }
-        }
         stage('stage1') {
             steps {
                 echo "Running stage 1"
@@ -30,6 +26,19 @@ pipeline {
                 echo "Running stage 2"
                 withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
                     echo "${secret_file_key}"
+                }
+            }
+        }
+        stage('stage3'){
+            steps {
+                echo "Connecting to org"
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'server_key_file')]){
+                        rc = command "${toolbelt}/sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg"
+                        if (rc != 0) {
+                            error 'Salesforce dev hub org authorization failed.'
+                        }
+                    }
                 }
             }
         }
