@@ -32,9 +32,8 @@
 //     }
 // }
 
-#!groovy
 
-import groovy.json.JsonSlurperClassic
+// import groovy.json.JsonSlurperClassic
 
 node {
     def SF_INSTANCE_URL = credentials('SF_INSTANCE_URL')
