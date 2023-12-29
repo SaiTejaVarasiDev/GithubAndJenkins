@@ -34,7 +34,7 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     echo "Testing sfdx installation"
-                    echo "${toolbelt}"
+                    bat "${toolbelt}\sf\bin sf --version"
                 }
             }
         }
