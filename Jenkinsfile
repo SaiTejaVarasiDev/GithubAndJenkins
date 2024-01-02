@@ -12,7 +12,7 @@ pipeline {
         
     }
     parameters {
-        string(name: 'apexclass_path', defaultValue: 'C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline', description: 'path')
+        string(name: 'apexclass_path', defaultValue: 'C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline/force-app/main/default/classes', description: 'path')
     }
     stages {
         stage('Testing credentials') {
@@ -60,7 +60,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
                         // echo "${secret_file_key}"
                         bat "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${secret_file_key} --set-default-dev-hub --alias HubOrg"
-                        bat "sf deploy metadata preview -d ${params.apexclass_path}"
+                        // bat "sf deploy metadata preview -d ${params.apexclass_path}"
                         
                     }
                     // }
