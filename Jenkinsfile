@@ -34,26 +34,18 @@ pipeline {
                 }
             }
         }
-        stage('Build Stage ') {
+        
+        stage('Authenticate with Salesforce') {
             steps {
-                dir('C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline') {
-                    bat '''
+                script {
+                    withCredentials([usernamePassword(credentialsId: '5ceab6ce-965b-487b-a3f7-4a32268c9374', passwordVariable: 'SFDC_PASSWORD', usernameVariable: 'SFDC_USERNAME')]) {
+                        bat '''
                         sf login --instanceurl https://login.salesforce.com --clientid YOUR_CONSUMER_KEY --clientsecret YOUR_CONSUMER_SECRET --username $SFDC_USERNAME --password $SFDC_PASSWORD
                         '''
+                    }
                 }
             }
         }
-        // stage('Authenticate with Salesforce') {
-        //     steps {
-        //         script {
-        //             withCredentials([usernamePassword(credentialsId: '5ceab6ce-965b-487b-a3f7-4a32268c9374', passwordVariable: 'SFDC_PASSWORD', usernameVariable: 'SFDC_USERNAME')]) {
-        //                 bat '''
-        //                 sf login --instanceurl https://login.salesforce.com --clientid YOUR_CONSUMER_KEY --clientsecret YOUR_CONSUMER_SECRET --username $SFDC_USERNAME --password $SFDC_PASSWORD
-        //                 '''
-        //             }
-        //         }
-        //     }
-        // }
         // stage('Authorize To ORG and deploy testing') {
         //     steps {
         //         withEnv(["HOME=${env.WORKSPACE}"]) {
