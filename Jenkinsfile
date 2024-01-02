@@ -43,7 +43,7 @@ pipeline {
             }
         }
         
-        stage('Authenticate with Salesforce ') {
+        stage('Authenticate with Salesforce') {
             steps {
                 echo "PATH: ${env.PATH}"
                 withEnv(["PATH+EXTRA=$sf_path"]) {
