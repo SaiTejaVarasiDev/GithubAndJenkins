@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Testing credentials') {
             steps {
-                echo "Running stage 1"
+                echo "Running stage 1 "
                 echo "$SF_INSTANCE_URL"
                 echo "$SF_USERNAME"
                 echo "$SF_CONSUMER_KEY"
