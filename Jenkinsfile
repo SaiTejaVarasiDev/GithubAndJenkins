@@ -6,6 +6,7 @@ pipeline {
         SF_CONSUMER_KEY = credentials('SF_CONSUMER_KEY')
         SF_SERVER_KEY = credentials('SF_SERVER_KEY')
         toolbelt = tool name: 'salesforce_cli'
+        sf_path = "C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce/sf/bin"
         
         
         
@@ -37,14 +38,10 @@ pipeline {
         
         stage('Authenticate with Salesforce ') {
             steps {
-                script {
-                    echo %PATH%
-                    withCredentials([usernamePassword(credentialsId: '5ceab6ce-965b-487b-a3f7-4a32268c9374', passwordVariable: 'SFDC_PASSWORD', usernameVariable: 'SFDC_USERNAME')]) {
-                        bat '''
-                        sf login --instanceurl https://login.salesforce.com --clientid YOUR_CONSUMER_KEY --clientsecret YOUR_CONSUMER_SECRET --username $SFDC_USERNAME --password $SFDC_PASSWORD
-                        '''
-                    }
+                withEnv(["PATH+EXTRA=$sf_path"]) {
+                    bat "sf --version"
                 }
+                
             }
         }
         // stage('Authorize To ORG and deploy testing') {
