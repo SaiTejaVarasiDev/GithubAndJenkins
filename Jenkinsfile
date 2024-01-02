@@ -34,7 +34,7 @@ pipeline {
                 }
             }
         }
-        stage('Build Stage') {
+        stage('Build Stage ') {
             steps {
                 dir('C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline') {
                     bat '''
