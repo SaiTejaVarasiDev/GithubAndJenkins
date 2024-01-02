@@ -36,7 +36,7 @@ pipeline {
             }
         }
         
-        stage('Authenticate with Salesforce ') {
+        stage('Authenticate with Salesforce') {
             steps {
                 withEnv(["PATH+EXTRA=$sf_path"]) {
                     bat "sf --version"
