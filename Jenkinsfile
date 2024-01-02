@@ -5,8 +5,8 @@ pipeline {
         SF_USERNAME = credentials('SF_USERNAME')
         SF_CONSUMER_KEY = credentials('SF_CONSUMER_KEY')
         SF_SERVER_KEY = credentials('SF_SERVER_KEY')
-        toolbelt = tool name: 'salesforce_cli'
-        sf_path = "C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce/sf/bin"
+        // toolbelt = tool name: 'salesforce_cli'
+        // sf_path = "C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce/sf/bin"
         
         
         
@@ -35,15 +35,23 @@ pipeline {
                 }
             }
         }
-        
-        stage('Authenticate with Salesforce') {
+        stage('check plugin') {
             steps {
-                withEnv(["PATH+EXTRA=$sf_path"]) {
-                    bat "sf --version"
-                }
-                
+                echo "PATH: ${env.PATH}"
+                bat "dir"
+                bat "sf --version"
             }
         }
+        
+        // stage('Authenticate with Salesforce') {
+        //     steps {
+        //         echo "PATH: ${env.PATH}"
+        //         withEnv(["PATH+EXTRA=$sf_path"]) {
+        //             bat "sf --version"
+        //         }
+                
+        //     }
+        // }
         // stage('Authorize To ORG and deploy testing') {
         //     steps {
         //         withEnv(["HOME=${env.WORKSPACE}"]) {
