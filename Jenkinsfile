@@ -63,7 +63,7 @@ pipeline {
                         // bat "sf deploy metadata preview -d ${params.apexclass_path}"
                         
                     }
-                    // }
+                    }
                 }
             }
         }
