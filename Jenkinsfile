@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\workspace\p1 pipeline') {
+                dir('C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline') {
                     bat "set PATH=%PATH%;C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce/sf/bin"
                     bat '''
                         sf login --instanceurl https://login.salesforce.com --clientid YOUR_CONSUMER_KEY --clientsecret YOUR_CONSUMER_SECRET --username $SFDC_USERNAME --password $SFDC_PASSWORD
