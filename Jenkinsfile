@@ -12,7 +12,7 @@ pipeline {
         
     }
     parameters {
-        string(name: 'apexclass_path', defaultValue: 'C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline/force-app/main/default/classes', description: 'path')
+        string(name: 'apexclass_path', defaultValue: 'C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/p1 pipeline', description: 'path')
     }
     stages {
         stage('Testing credentials') {
