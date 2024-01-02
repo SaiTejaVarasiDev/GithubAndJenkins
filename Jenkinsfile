@@ -43,30 +43,30 @@ pipeline {
             }
         }
         
-        stage('Authenticate with Salesforce ') {
-            steps {
-                echo "PATH: ${env.PATH}"
-                withEnv(["PATH+EXTRA=$sf_path"]) {
-                    echo "PATH: ${env.PATH}"
-                    bat "sf --version"
-                }
-                
-            }
-        }
-        // stage('Authorize To ORG and deploy testing') {
+        // stage('Authenticate with Salesforce ') {
         //     steps {
-        //         withEnv(["HOME=${env.WORKSPACE}"]) {
-        //             dir('C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce/sf/bin'){
-        //                 withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
-        //                     // echo "${secret_file_key}"
-        //                     bat "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${secret_file_key} --set-default-dev-hub --alias HubOrg"
-        //                     bat "sf deploy metadata preview -d ${params.apexclass_path}"
-                            
-        //                 }
-        //             }
+        //         echo "PATH: ${env.PATH}"
+        //         withEnv(["PATH+EXTRA=$sf_path"]) {
+        //             echo "PATH: ${env.PATH}"
+        //             bat "sf --version"
         //         }
+                
         //     }
         // }
+        stage('Authorize To ORG and deploy testing') {
+            steps {
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    // dir('C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce/sf/bin'){
+                    withCredentials([file(credentialsId: 'SF_SERVER_KEY', variable: 'secret_file_key')]){
+                        // echo "${secret_file_key}"
+                        bat "sf org login jwt --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${secret_file_key} --set-default-dev-hub --alias HubOrg"
+                        bat "sf deploy metadata preview -d ${params.apexclass_path}"
+                        
+                    }
+                    // }
+                }
+            }
+        }
         
     }
 }
