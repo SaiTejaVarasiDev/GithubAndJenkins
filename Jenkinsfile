@@ -53,7 +53,7 @@ pipeline {
         //     }
         // }
         
-        stage('Authorize To ORG and deploy testing') {
+        stage('Authorize To ORG and deploy testing ') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     dir('C:/Windows/System32/config/systemprofile/AppData/Local/Jenkins/.jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/salesforce_cli/sf/bin'){
